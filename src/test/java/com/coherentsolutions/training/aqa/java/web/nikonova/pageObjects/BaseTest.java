@@ -2,6 +2,7 @@ package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
 
 import com.coherentsolutions.training.aqa.java.web.nikonova.browsersSettings.BrowsersSettings;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -14,6 +15,7 @@ import org.testng.annotations.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -50,14 +52,25 @@ public class BaseTest {
         BrowsersSettings.driverTeardown();
     }
 
+
+
     @AfterMethod
+
     public void saveScreenshot(ITestResult result) throws IOException {
         if (result.getStatus() == ITestResult.FAILURE) {
             TakesScreenshot tc = (TakesScreenshot) BrowsersSettings.getDriver();
             File src = tc.getScreenshotAs(OutputType.FILE);
             FileHandler.copy(src, new File(result.getName() + ".png"));
 
-        //    Allure.addAttachment(new File(saveScreenshot(ITestResult, src)));
+            Allure.addAttachment(result.getMethod().getMethodName(), new FileInputStream(((TakesScreenshot) BrowsersSettings.getDriver()).getScreenshotAs(OutputType.FILE)));
+
+        //    FileHandler.copy(src, new File(result.getName() + ".png"));
+        //    Allure.addAttachment("Failed screenshot", new File(""));
+
+       //    FileHandler.copy(tc.getScreenshotAs(OutputType.FILE), new File("C:\\Users\\SvetlanaNikonova\\IdeaProjects\\FinalTask\\allure-reports\result.getName() + \".png\""));
+
+
+
         }
     }
 }

@@ -16,39 +16,29 @@ public class ProductPage {
     @FindBy(
             xpath = "//a[@id='wishlist_button']"
     )
-    WebElement addToWishlistButton;
-    //  @FindBy(
-    //         css = "#block-history tbody > tr"
-    // )
-    //  List<WebElement> wishlistItems;
-    //  @FindBy(
-    //         css = "a[title='Women']"
-    // )
-    // WebElement categoryWomen;
+    private WebElement addToWishlistButton;
     @FindBy(
             css = ".account"
     )
-    WebElement accountButton;
+    private WebElement accountButton;
     @FindBy(
             css = "a[title='Close']"
     )
-    WebElement closeButton;
-    @FindBy(
-            id = "product_reference"
-    )
-    WebElement itemsButton;
+    private WebElement closeButton;
     @FindBy(
             id = "add_to_cart"
     )
-    WebElement addToCart;
+    private WebElement addToCart;
     @FindBy(
             css = "div.button-container>span"
     )
-    WebElement continueShopping;
+    private WebElement continueShopping;
     @FindBy(
             css = "div.button-container > a > span"
     )
-    WebElement checkOut;
+    private WebElement checkOut;
+
+    By itemsButton = By.id("product_reference");
 
     public ProductPage() {
 
@@ -83,7 +73,7 @@ public class ProductPage {
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOfElementLocated(By.id("product_reference"))).isDisplayed();
+            return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOfElementLocated(itemsButton)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }

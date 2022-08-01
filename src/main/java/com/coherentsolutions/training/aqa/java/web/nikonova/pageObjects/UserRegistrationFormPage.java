@@ -1,6 +1,7 @@
 package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
 
 import com.coherentsolutions.training.aqa.java.web.nikonova.browsersSettings.BrowsersSettings;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -11,24 +12,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserRegistrationFormPage {
 
-
-    private static final String USER_EMAIL = "SeleniumTest7389@yandex.com";
-    private final String FIRSTNAME = "Lisa";
-    private final String LASTNAME = "Doe";
-    private final String PASSWORD = "password123";
-    private final String ADDRESS = "Wall st.";
-    private final String NAME_ADDRESS = "Lisa";
-    private final String L_NAME_ADDRESS = "Doe";
-    private final String CITY = "Washington";
-    private final String POSTCODE = "55555";
-    private final String PHONE = "32323232";
-
-    @FindBy(how = How.CSS, using = "#email_create")      // write your email
+    @FindBy(how = How.CSS, using = "#email_create")
     private WebElement registrationEmailInput;
 
-    @FindBy(how = How.CSS, using = "#SubmitCreate")       //click create account
+    @FindBy(how = How.CSS, using = "#SubmitCreate")
     private WebElement createAccountButton;
-
 
     @FindBy(how = How.CSS, using = "#customer_firstname")
     private WebElement nameInput;
@@ -76,21 +64,25 @@ public class UserRegistrationFormPage {
 
     public AccountPage fillRegistrationForm(String name, String lastName, String password, String address, String city, String postalCode, String phoneNumber, String state, String alias) {
 
-            nameInput.sendKeys(name);
-            lastnameInput.sendKeys(lastName);
-            passwordInput.sendKeys(password);
-            addressInput.sendKeys(address);
-            cityInput.sendKeys(city);
-            Select select = new Select(stateSelect);
-            select.selectByVisibleText(state);
-            postalCodeInput.sendKeys(postalCode);
-            phoneNumberInput.sendKeys(phoneNumber);
-            this.alias.sendKeys(alias);
-            registerButton.click();
-            return new AccountPage();
+        nameInput.sendKeys(name);
+        lastnameInput.sendKeys(lastName);
+        passwordInput.sendKeys(password);
+        addressInput.sendKeys(address);
+        cityInput.sendKeys(city);
+        Select select = new Select(stateSelect);
+        select.selectByVisibleText(state);
+        postalCodeInput.sendKeys(postalCode);
+        phoneNumberInput.sendKeys(phoneNumber);
+        this.alias.sendKeys(alias);
+        registerButton.click();
+        return new AccountPage();
     }
 
     public boolean isLoaded() {
-        return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOf(accountManagementPanel)).isDisplayed();
+        try {
+            return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOf(accountManagementPanel)).isDisplayed();
+        } catch (WebDriverException e) {
+            return false;
+        }
     }
 }

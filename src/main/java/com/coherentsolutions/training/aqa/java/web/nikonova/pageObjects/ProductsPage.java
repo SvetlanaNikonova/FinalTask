@@ -12,28 +12,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductsPage {
 
-    @FindBy(
-            css = ".navigation_page"
-    )
-    WebElement productElements;
+
     @FindBy(
             xpath = "//*[@class='product-name'][@title='Blouse']"
     )
-    WebElement productFirst;
+    private WebElement productFirst;
 
     @FindBy(
             css = ".product-name[title='Faded Short Sleeve T-shirts']"
     )
-    WebElement secondProduct;
+    private WebElement secondProduct;
     @FindBy(
             css = ".product-name[title='Printed Chiffon Dress']"
     )
-    WebElement thirdProduct;
+    private WebElement thirdProduct;
 
     @FindBy(
             id = "cart_title"
     )
-    WebElement cartSummary;
+    private WebElement cartSummary;
+
+    By productElements = By.cssSelector(".navigation_page");
 
 
     public ProductsPage() {
@@ -48,7 +47,7 @@ public class ProductsPage {
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".navigation_page"))).isDisplayed();
+            return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOfElementLocated(productElements)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }
@@ -63,7 +62,6 @@ public class ProductsPage {
         this.thirdProduct.click();
         return new ProductPage();
     }
-
 
 
     public boolean isCartDisplayed() {

@@ -25,7 +25,6 @@ public class CartTest extends BaseTest {
 
         WishListPage wishListPage = new WishListPage();
         ProductsPage productsPage = wishListPage.navigateWomenCategory();
-      //  ProductsPage myProductsPage1 = new ProductsPage();
         ProductPage cartProductPage = productsPage.clickFirstProduct();
         cartProductPage = cartProductPage.addToCart();
         cartProductPage = cartProductPage.continueShopping();

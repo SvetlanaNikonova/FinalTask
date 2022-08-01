@@ -25,19 +25,14 @@ public class CustomWishlistTest extends BaseTest {
 
         AccountPage accountPage = new AccountPage();
         WishListPage autoWishListPage = accountPage.navigateWishlist();
-        //    Assert.assertEquals(0, autoWishListPage.getWishlistItems().size());
         String customWishlistName = "Custom Wishlist";
-        accountPage.createCustomWishlist(customWishlistName);
-        WishListPage wishListPage = new WishListPage();
-        ProductsPage productsPage = wishListPage.navigateWomenCategory();
-        ProductsPage customProductsPage = new ProductsPage();
+        accountPage = accountPage.createCustomWishlist(customWishlistName);
+        ProductsPage productsPage = accountPage.navigateWomenCategory();
         ProductPage productPage = productsPage.clickFirstProduct();
-        ProductPage customProductPage = new ProductPage();
         productPage = productPage.addToWishlist();
-        AccountPage customAccountPage = productPage.navigateToAccount();
-        WishListPage customWishListPage = new WishListPage();
-        wishListPage = wishListPage.expandWishlist().checkWishlist();
-        Assert.assertTrue(wishListPage.isCustomWishlistDisplayed(), "Custom Wishlist is not displayed");
+        accountPage = productPage.navigateToAccount();
+        autoWishListPage = autoWishListPage.expandWishlist().checkWishlist();
+        Assert.assertTrue(autoWishListPage.isCustomWishlistDisplayed(), "Custom Wishlist is not displayed");
     }
 }
 

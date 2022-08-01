@@ -13,46 +13,30 @@ import java.util.List;
 
 public class WishListPage {
 
-  //  @FindBy(
-  //          css = "h1[itemprop=name]"
-  //  )
-  //  WebElement productName;
-   // @FindBy(
-   //         css = "#form_wishlist"
-   // )
-   // WebElement addToWishlistButton;
     @FindBy(
             css = "#block-history tbody > tr"
     )
-    List<WebElement> wishlistItems;
+    private List<WebElement> wishlistItems;
     @FindBy(
             css = "a[title=Women]"
     )
-    WebElement categoryWomen;
-   // @FindBy(
-   //         css = ".account"
-   // )
-   // WebElement accountButton;
+    private WebElement categoryWomen;
+
     @FindBy(
             css = ".page-heading"
     )
-    WebElement wishlistLink;
-   // @FindBy(
-    //        css = "#s_title"
-   // )
-    WebElement wishlistItem;
-   // @FindBy(
-    //        className = ".page-subheading"
-   // )
-   // WebElement myWishlist;
+    private WebElement wishlistLink;
+
     @FindBy(
             id = "block-history"
     )
-    WebElement customWishlist;
+    private WebElement customWishlist;
     @FindBy(
             css = ".lnk_wishlist"
     )
-    WebElement wishlistButton;
+    private WebElement wishlistButton;
+
+    private By wishlistForm = By.cssSelector("#form_wishlist");
 
     public WishListPage() {
 
@@ -60,27 +44,19 @@ public class WishListPage {
 
     }
 
-
-  //  public void navigateToAccount() {
-  //      this.accountButton.click();
-  //  }
-
     public WishListPage expandWishlist() {
         wishlistLink.isDisplayed();
         return this;
     }
+
     public WishListPage checkWishlist() {
         wishlistButton.click();
         return this;
     }
 
-  //  public String getProductName() {
-  //      return this.productName.getText();
-  //  }
-
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#form_wishlist"))).isDisplayed();
+            return new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.visibilityOfElementLocated(wishlistForm)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }
@@ -95,13 +71,6 @@ public class WishListPage {
         return new ProductsPage();
     }
 
-  //  public String getWishlistItemName() {
-  //      return this.wishlistItem.getText().split("\n")[0];
-  //  }
-
-  //  public String getWishlistName() {
-  //      return this.wishlistLink.getText();
-  //  }
     public boolean isCustomWishlistDisplayed() {
         try {
             return new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.textToBePresentInElement(customWishlist, "Custom Wishlist"));
