@@ -1,6 +1,7 @@
 package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
 
-import com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,6 +14,8 @@ public class CustomWishlistTest extends BaseTest {
     }
 
     @Test(dataProvider = "userLoginDetails", priority = 1)
+    @Feature("Login")
+    @Description("Verify the ability to login")
     public void loginToAccount(String email, String password) {
 
         AuthenticationPage ap = new AuthenticationPage();
@@ -21,6 +24,8 @@ public class CustomWishlistTest extends BaseTest {
     }
 
     @Test(priority = 2)
+    @Feature("Create custom wishlist")
+    @Description("Verify the ability to create custom wishlist")
     public void checkCustomWishList() {
 
         AccountPage accountPage = new AccountPage();

@@ -2,18 +2,13 @@ package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
 
 import com.coherentsolutions.training.aqa.java.web.nikonova.browsersSettings.BrowsersSettings;
 import io.qameta.allure.Allure;
-import io.qameta.allure.Attachment;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,7 +21,6 @@ public class BaseTest {
     private static final String SAUCE_LABS_ENVIRONMENT = "sauceLabs";
     private static final String CHROME = "chrome";
     private static final String FIREFOX = "firefox";
-
 
     protected static final String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 
@@ -41,7 +35,6 @@ public class BaseTest {
         webdriverwait = new WebDriverWait(BrowsersSettings.getDriver(), 30);
 
         BrowsersSettings.getDriver().manage().window().maximize();
-        //driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
         BrowsersSettings.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         BrowsersSettings.getDriver().get(URL);
     }
@@ -52,10 +45,7 @@ public class BaseTest {
         BrowsersSettings.driverTeardown();
     }
 
-
-
     @AfterMethod
-
     public void saveScreenshot(ITestResult result) throws IOException {
         if (result.getStatus() == ITestResult.FAILURE) {
             TakesScreenshot tc = (TakesScreenshot) BrowsersSettings.getDriver();
@@ -63,14 +53,6 @@ public class BaseTest {
             FileHandler.copy(src, new File(result.getName() + ".png"));
 
             Allure.addAttachment(result.getMethod().getMethodName(), new FileInputStream(((TakesScreenshot) BrowsersSettings.getDriver()).getScreenshotAs(OutputType.FILE)));
-
-        //    FileHandler.copy(src, new File(result.getName() + ".png"));
-        //    Allure.addAttachment("Failed screenshot", new File(""));
-
-       //    FileHandler.copy(tc.getScreenshotAs(OutputType.FILE), new File("C:\\Users\\SvetlanaNikonova\\IdeaProjects\\FinalTask\\allure-reports\result.getName() + \".png\""));
-
-
-
         }
     }
 }

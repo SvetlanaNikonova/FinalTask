@@ -23,13 +23,10 @@ public class BrowsersSettings {
 
     public static void driverTeardown() {
         driver.quit();
-      //  BrowsersSettings.driver = null;
     }
 
     public static WebDriver getDriver() {
-       // if (driver == null) {
-        //    driver = new ChromeDriver();
-      //  }
+
         return driver;
     }
 

@@ -17,6 +17,7 @@ public class WishListPage {
             css = "#block-history tbody > tr"
     )
     private List<WebElement> wishlistItems;
+
     @FindBy(
             css = "a[title=Women]"
     )
@@ -31,6 +32,7 @@ public class WishListPage {
             id = "block-history"
     )
     private WebElement customWishlist;
+
     @FindBy(
             css = ".lnk_wishlist"
     )

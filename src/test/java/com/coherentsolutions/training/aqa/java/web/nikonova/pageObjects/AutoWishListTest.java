@@ -1,5 +1,7 @@
 package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -12,6 +14,8 @@ public class AutoWishListTest extends BaseTest {
     }
 
     @Test(dataProvider = "userLoginDetails", priority = 1)
+    @Feature("Login")
+    @Description("Verify the ability to login")
     public void loginToAccount(String email, String password) {
 
         AuthenticationPage ap = new AuthenticationPage();
@@ -20,6 +24,8 @@ public class AutoWishListTest extends BaseTest {
     }
 
     @Test(priority = 2)
+    @Feature("Check wishlist")
+    @Description("Verify the ability to check wishlist")
     public void checkWishListIsEmpty() {
 
         AccountPage accountPage = new AccountPage();
@@ -28,7 +34,8 @@ public class AutoWishListTest extends BaseTest {
     }
 
     @Test(priority = 3)
-
+    @Feature("Check products page")
+    @Description("Verify the ability to load products page")
     public void checkProductsPageIsLoaded() {
 
         WishListPage wishListPage = new WishListPage();
@@ -37,6 +44,8 @@ public class AutoWishListTest extends BaseTest {
     }
 
     @Test(priority = 4)
+    @Feature("Check product page")
+    @Description("Verify the ability to load product page")
     public void checkProductPageIsLoaded() {
 
         ProductsPage productsPage = new ProductsPage();
@@ -45,6 +54,8 @@ public class AutoWishListTest extends BaseTest {
     }
 
     @Test(priority = 5)
+    @Feature("Check account page")
+    @Description("Verify the ability to load account page")
     public void checkAccountPageIsLoaded() {
 
         ProductPage productPage = new ProductPage();
@@ -54,6 +65,8 @@ public class AutoWishListTest extends BaseTest {
     }
 
     @Test(priority = 6)
+    @Feature("Check wishlist page")
+    @Description("Verify the ability to load wishlist page")
     public void checkWishListPageIsLoaded() {
 
         AccountPage accountPage = new AccountPage();
@@ -61,8 +74,9 @@ public class AutoWishListTest extends BaseTest {
         Assert.assertTrue(wishListPage.isLoaded(), "Wishlist page was not loaded");
     }
 
-
     @Test(priority = 7)
+    @Feature("Check added product")
+    @Description("Verify the ability to add product")
     public void checkProductAddedToWishlist() {
 
         WishListPage wishListPage = new WishListPage();

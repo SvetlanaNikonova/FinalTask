@@ -10,29 +10,33 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-
 public class ProductPage {
 
     @FindBy(
             xpath = "//a[@id='wishlist_button']"
     )
     private WebElement addToWishlistButton;
+
     @FindBy(
             css = ".account"
     )
     private WebElement accountButton;
+
     @FindBy(
             css = "a[title='Close']"
     )
     private WebElement closeButton;
+
     @FindBy(
             id = "add_to_cart"
     )
     private WebElement addToCart;
+
     @FindBy(
             css = "div.button-container>span"
     )
     private WebElement continueShopping;
+
     @FindBy(
             css = "div.button-container > a > span"
     )
@@ -52,10 +56,12 @@ public class ProductPage {
         closeButton.click();
         return this;
     }
+
     public ProductPage addToCart() {
         this.addToCart.click();
         return new ProductPage();
     }
+
     public ProductPage continueShopping() {
         this.continueShopping.click();
         return new ProductPage();

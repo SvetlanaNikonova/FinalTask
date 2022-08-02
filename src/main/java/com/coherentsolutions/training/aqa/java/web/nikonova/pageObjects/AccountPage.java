@@ -20,14 +20,17 @@ public class AccountPage {
             css = ".lnk_wishlist"
     )
     private WebElement wishlistButton;
+
     @FindBy(
             css = "a[title=Women]"
     )
     private WebElement categoryWomen;
+
     @FindBy(
             css = "#name"
     )
     private WebElement wishlistNameInput;
+
     @FindBy(
             css = "#submitWishlist"
     )
@@ -51,22 +54,17 @@ public class AccountPage {
         return new ProductsPage();
     }
 
-   // public void expandWishlist() {
-   //     this.wishlistLink.click();
-   // }
-
-
     public AccountPage createCustomWishlist(String name) {
         this.wishlistNameInput.sendKeys(name);
         this.saveWishlistButton.click();
         return this;
     }
 
-
     public boolean isLoaded() {
         try {
-          return   new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.visibilityOfElementLocated(item)).isDisplayed();
-        }catch (WebDriverException e) {return false;}
-
+            return new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.visibilityOfElementLocated(item)).isDisplayed();
+        } catch (WebDriverException e) {
+            return false;
+        }
     }
 }

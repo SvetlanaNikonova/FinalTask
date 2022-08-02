@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductsPage {
 
-
     @FindBy(
             xpath = "//*[@class='product-name'][@title='Blouse']"
     )
@@ -52,17 +51,16 @@ public class ProductsPage {
             return false;
         }
     }
+
     public ProductPage clickSecondProduct() {
         this.secondProduct.click();
         return new ProductPage();
     }
 
-
     public ProductPage clickThirdProduct() {
         this.thirdProduct.click();
         return new ProductPage();
     }
-
 
     public boolean isCartDisplayed() {
         try {

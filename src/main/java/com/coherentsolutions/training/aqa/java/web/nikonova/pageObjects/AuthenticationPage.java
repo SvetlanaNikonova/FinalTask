@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AuthenticationPage {
 
-
     @FindBy(how = How.CSS, using = "#create-account_form")
     private WebElement accountCreationForm;
 
@@ -21,7 +20,6 @@ public class AuthenticationPage {
 
     @FindBy(how = How.CSS, using = "#SubmitCreate")
     private WebElement registerButton;
-
 
     @FindBy(how = How.CSS, using = "#passwd")
     private WebElement passwordInput;
@@ -59,7 +57,6 @@ public class AuthenticationPage {
         this.signinButton.click();
         return new AccountPage();
     }
-
 }
 
 
