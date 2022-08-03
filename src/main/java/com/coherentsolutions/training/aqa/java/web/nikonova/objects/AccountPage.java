@@ -1,15 +1,16 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
-import com.coherentsolutions.training.aqa.java.web.nikonova.browsersSettings.BrowsersSettings;
-import org.openqa.selenium.By;
+import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersSettings;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AccountPage {
+import java.time.Duration;
+
+public class AccountPage extends BasePage{
 
     @FindBy(
             css = "tbody td:first-child a"
@@ -36,22 +37,27 @@ public class AccountPage {
     )
     private WebElement saveWishlistButton;
 
-    private By item = By.cssSelector(".page-heading");
+    @FindBy(
+            css = ".page-heading"
+    )
+    private WebElement item;
 
-    public AccountPage() {
+   // private By item = By.cssSelector(".page-heading");
 
-        PageFactory.initElements(BrowsersSettings.getDriver(), this);
+    public AccountPage(WebDriver driver) {
+        super(driver);
+
 
     }
 
     public WishListPage navigateWishlist() {
         wishlistButton.click();
-        return new WishListPage();
+        return new WishListPage(driver);
     }
 
     public ProductsPage navigateWomenCategory() {
         categoryWomen.click();
-        return new ProductsPage();
+        return new ProductsPage(driver);
     }
 
     public AccountPage createCustomWishlist(String name) {
@@ -62,7 +68,7 @@ public class AccountPage {
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.visibilityOfElementLocated(item)).isDisplayed();
+            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(item)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }

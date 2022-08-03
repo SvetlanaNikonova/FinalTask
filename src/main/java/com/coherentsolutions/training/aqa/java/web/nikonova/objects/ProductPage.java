@@ -1,16 +1,17 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
-import com.coherentsolutions.training.aqa.java.web.nikonova.browsersSettings.BrowsersSettings;
-import org.openqa.selenium.By;
+import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersSettings;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 
-public class ProductPage {
+
+public class ProductPage extends BasePage{
 
     @FindBy(
             xpath = "//a[@id='wishlist_button']"
@@ -42,11 +43,16 @@ public class ProductPage {
     )
     private WebElement checkOut;
 
-    By itemsButton = By.id("product_reference");
+    @FindBy(
+            id = "product_reference"
+    )
+    private WebElement itemsButton;
 
-    public ProductPage() {
+   // By itemsButton = By.id("product_reference");
 
-        PageFactory.initElements(BrowsersSettings.getDriver(), this);
+    public ProductPage(WebDriver driver) {
+
+       super(driver);
 
     }
 
@@ -59,27 +65,27 @@ public class ProductPage {
 
     public ProductPage addToCart() {
         this.addToCart.click();
-        return new ProductPage();
+        return new ProductPage(driver);
     }
 
     public ProductPage continueShopping() {
         this.continueShopping.click();
-        return new ProductPage();
+        return new ProductPage(driver);
     }
 
     public ProductPage goToCheckOut() {
         this.checkOut.click();
-        return new ProductPage();
+        return new ProductPage(driver);
     }
 
     public AccountPage navigateToAccount() {
         this.accountButton.click();
-        return new AccountPage();
+        return new AccountPage(driver);
     }
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOfElementLocated(itemsButton)).isDisplayed();
+            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(itemsButton)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }

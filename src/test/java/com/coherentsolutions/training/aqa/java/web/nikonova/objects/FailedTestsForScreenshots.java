@@ -1,4 +1,4 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -20,7 +20,7 @@ public class FailedTestsForScreenshots extends BaseTest {
     @Description("Verify the ability to login")
     public void loginToAccount(String email, String password) {
 
-        AuthenticationPage ap = new AuthenticationPage();
+        AuthenticationPage ap = new AuthenticationPage(driver);
         AccountPage accountPage = ap.loginAccount(email, password);
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
     }
@@ -30,18 +30,18 @@ public class FailedTestsForScreenshots extends BaseTest {
     @Description("Verify the ability to create wishlist")
     public void checkCustomWishList() {
 
-        AccountPage accountPage = new AccountPage();
+        AccountPage accountPage = new AccountPage(driver);
         WishListPage autoWishListPage = accountPage.navigateWishlist();
         String customWishlistName = "Custom Wishlist";
         accountPage.createCustomWishlist(customWishlistName);
-        WishListPage wishListPage = new WishListPage();
+        WishListPage wishListPage = new WishListPage(driver);
         ProductsPage productsPage = wishListPage.navigateWomenCategory();
-        ProductsPage customProductsPage = new ProductsPage();
+        ProductsPage customProductsPage = new ProductsPage(driver);
         ProductPage productPage = productsPage.clickFirstProduct();
-        ProductPage customProductPage = new ProductPage();
+        ProductPage customProductPage = new ProductPage(driver);
         productPage = productPage.addToWishlist();
         AccountPage customAccountPage = productPage.navigateToAccount();
-        WishListPage customWishListPage = new WishListPage();
+        WishListPage customWishListPage = new WishListPage(driver);
         wishListPage = wishListPage.expandWishlist().checkWishlist();
         Assert.assertFalse(wishListPage.isCustomWishlistDisplayed(), "Custom Wishlist is not displayed");
     }

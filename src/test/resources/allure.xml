@@ -3,12 +3,12 @@
 <suite name="Test Suite" verbose="2">
     <test name="Allure Tests">
         <classes>
-            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects.AutoWishListTest"/>
-            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects.CartTest"/>
-            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects.CustomWishlistTest"/>
-            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects.FailedTestsForScreenshots" />
-            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects.UserLoginTest"/>
-            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects.UserRegistrationFormPage"/>
+            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.AutoWishListTest"/>
+            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.CartTest"/>
+            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.CustomWishlistTest"/>
+            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.FailedTestsForScreenshots" />
+            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.UserLoginTest"/>
+            <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.UserRegistrationFormPage"/>
         </classes>
     </test>
 </suite>

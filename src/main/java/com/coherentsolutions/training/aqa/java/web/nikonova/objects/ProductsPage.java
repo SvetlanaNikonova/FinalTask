@@ -1,16 +1,17 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
-import com.coherentsolutions.training.aqa.java.web.nikonova.browsersSettings.BrowsersSettings;
-import org.openqa.selenium.By;
+import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersSettings;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 
-public class ProductsPage {
+
+public class ProductsPage extends BasePage{
 
     @FindBy(
             xpath = "//*[@class='product-name'][@title='Blouse']"
@@ -21,6 +22,7 @@ public class ProductsPage {
             css = ".product-name[title='Faded Short Sleeve T-shirts']"
     )
     private WebElement secondProduct;
+
     @FindBy(
             css = ".product-name[title='Printed Chiffon Dress']"
     )
@@ -31,22 +33,27 @@ public class ProductsPage {
     )
     private WebElement cartSummary;
 
-    By productElements = By.cssSelector(".navigation_page");
+    @FindBy(
+            css = ".navigation_page"
+    )
+    private WebElement productElements;
+
+  //  By productElements = By.cssSelector(".navigation_page");
 
 
-    public ProductsPage() {
+    public ProductsPage(WebDriver driver) {
 
-        PageFactory.initElements(BrowsersSettings.getDriver(), this);
+       super(driver);
     }
 
     public ProductPage clickFirstProduct() {
         this.productFirst.click();
-        return new ProductPage();
+        return new ProductPage(driver);
     }
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOfElementLocated(productElements)).isDisplayed();
+            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(productElements)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }
@@ -54,17 +61,17 @@ public class ProductsPage {
 
     public ProductPage clickSecondProduct() {
         this.secondProduct.click();
-        return new ProductPage();
+        return new ProductPage(driver);
     }
 
     public ProductPage clickThirdProduct() {
         this.thirdProduct.click();
-        return new ProductPage();
+        return new ProductPage(driver);
     }
 
     public boolean isCartDisplayed() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.textToBePresentInElement(cartSummary, "Your shopping cart contains: "));
+            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(5)).until(ExpectedConditions.textToBePresentInElement(cartSummary, "Your shopping cart contains: "));
         } catch (WebDriverException e) {
             return false;
         }

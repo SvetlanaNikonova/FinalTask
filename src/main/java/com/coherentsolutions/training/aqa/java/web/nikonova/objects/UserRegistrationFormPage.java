@@ -1,16 +1,18 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
-import com.coherentsolutions.training.aqa.java.web.nikonova.browsersSettings.BrowsersSettings;
+import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersSettings;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class UserRegistrationFormPage {
+import java.time.Duration;
+
+public class UserRegistrationFormPage extends BasePage{
 
     @FindBy(how = How.CSS, using = "#email_create")
     private WebElement registrationEmailInput;
@@ -57,8 +59,8 @@ public class UserRegistrationFormPage {
     @FindBy(css = "div #center_column")
     private WebElement accountManagementPanel;
 
-    public UserRegistrationFormPage() {
-        PageFactory.initElements(BrowsersSettings.getDriver(), this);
+    public UserRegistrationFormPage(WebDriver driver) {
+        super(driver);
 
     }
 
@@ -75,12 +77,12 @@ public class UserRegistrationFormPage {
         phoneNumberInput.sendKeys(phoneNumber);
         this.alias.sendKeys(alias);
         registerButton.click();
-        return new AccountPage();
+        return new AccountPage(driver);
     }
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 5).until(ExpectedConditions.visibilityOf(accountManagementPanel)).isDisplayed();
+            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(accountManagementPanel)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }

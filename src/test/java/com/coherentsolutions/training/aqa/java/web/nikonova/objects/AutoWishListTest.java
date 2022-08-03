@@ -1,4 +1,4 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -18,7 +18,7 @@ public class AutoWishListTest extends BaseTest {
     @Description("Verify the ability to login")
     public void loginToAccount(String email, String password) {
 
-        AuthenticationPage ap = new AuthenticationPage();
+        AuthenticationPage ap = new AuthenticationPage(driver);
         AccountPage accountPage = ap.loginAccount(email, password);
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
     }
@@ -28,7 +28,7 @@ public class AutoWishListTest extends BaseTest {
     @Description("Verify the ability to check wishlist")
     public void checkWishListIsEmpty() {
 
-        AccountPage accountPage = new AccountPage();
+        AccountPage accountPage = new AccountPage(driver);
         WishListPage autoWishListPage = accountPage.navigateWishlist();
         Assert.assertEquals(0, autoWishListPage.getWishlistItems().size());
     }
@@ -38,7 +38,7 @@ public class AutoWishListTest extends BaseTest {
     @Description("Verify the ability to load products page")
     public void checkProductsPageIsLoaded() {
 
-        WishListPage wishListPage = new WishListPage();
+        WishListPage wishListPage = new WishListPage(driver);
         ProductsPage productsPage = wishListPage.navigateWomenCategory();
         Assert.assertTrue(productsPage.isLoaded(), "Products page was not loaded");
     }
@@ -48,7 +48,7 @@ public class AutoWishListTest extends BaseTest {
     @Description("Verify the ability to load product page")
     public void checkProductPageIsLoaded() {
 
-        ProductsPage productsPage = new ProductsPage();
+        ProductsPage productsPage = new ProductsPage(driver);
         ProductPage productPage = productsPage.clickFirstProduct();
         Assert.assertTrue(productPage.isLoaded(), "Product page was not loaded");
     }
@@ -58,7 +58,7 @@ public class AutoWishListTest extends BaseTest {
     @Description("Verify the ability to load account page")
     public void checkAccountPageIsLoaded() {
 
-        ProductPage productPage = new ProductPage();
+        ProductPage productPage = new ProductPage(driver);
         productPage = productPage.addToWishlist();
         AccountPage accountPage = productPage.navigateToAccount();
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
@@ -69,7 +69,7 @@ public class AutoWishListTest extends BaseTest {
     @Description("Verify the ability to load wishlist page")
     public void checkWishListPageIsLoaded() {
 
-        AccountPage accountPage = new AccountPage();
+        AccountPage accountPage = new AccountPage(driver);
         WishListPage wishListPage = accountPage.navigateWishlist();
         Assert.assertTrue(wishListPage.isLoaded(), "Wishlist page was not loaded");
     }
@@ -79,7 +79,7 @@ public class AutoWishListTest extends BaseTest {
     @Description("Verify the ability to add product")
     public void checkProductAddedToWishlist() {
 
-        WishListPage wishListPage = new WishListPage();
+        WishListPage wishListPage = new WishListPage(driver);
         wishListPage = wishListPage.expandWishlist();
         Assert.assertTrue(true, "Wishlist was not expanded");
     }

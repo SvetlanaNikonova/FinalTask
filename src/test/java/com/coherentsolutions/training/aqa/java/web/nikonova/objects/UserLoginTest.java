@@ -1,4 +1,4 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -17,7 +17,7 @@ public class UserLoginTest extends BaseTest {
     @Feature("Login")
     @Description("Verify the ability to login")
     public void loginToAccount(String email, String password) {
-        AuthenticationPage ap = new AuthenticationPage();
+        AuthenticationPage ap = new AuthenticationPage(driver);
         AccountPage accountPage = ap.loginAccount(email, password);
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
     }

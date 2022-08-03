@@ -1,4 +1,4 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -19,7 +19,7 @@ public class UserRegisterTest extends BaseTest {
     @Description("Verify the ability to create an account")
     public void registerAccount(String name, String lastName, String email, String password, String address, String city, String postalCode, String phoneNumber, String state, String alias) throws IOException {
 
-        AuthenticationPage ap = new AuthenticationPage();
+        AuthenticationPage ap = new AuthenticationPage(driver);
         UserRegistrationFormPage userPage = ap.registerAccount(email);
         Assert.assertTrue(userPage.isLoaded());
         AccountPage accountPage = userPage.fillRegistrationForm(name, lastName, password, address, city, postalCode, phoneNumber, state, alias);

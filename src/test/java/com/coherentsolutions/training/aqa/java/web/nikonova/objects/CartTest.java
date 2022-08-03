@@ -1,4 +1,4 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -18,7 +18,7 @@ public class CartTest extends BaseTest {
     @Description("Verify the ability to login")
     public void loginToAccount(String email, String password) {
 
-        AuthenticationPage ap = new AuthenticationPage();
+        AuthenticationPage ap = new AuthenticationPage(driver);
         AccountPage accountPage = ap.loginAccount(email, password);
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
     }
@@ -28,7 +28,7 @@ public class CartTest extends BaseTest {
     @Description("Verify the ability to create cart and add products")
     public void checkCartTest() {
 
-        WishListPage wishListPage = new WishListPage();
+        WishListPage wishListPage = new WishListPage(driver);
         ProductsPage productsPage = wishListPage.navigateWomenCategory();
         ProductPage cartProductPage = productsPage.clickFirstProduct();
         cartProductPage = cartProductPage.addToCart();

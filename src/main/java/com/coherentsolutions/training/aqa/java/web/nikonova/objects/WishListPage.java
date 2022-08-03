@@ -1,17 +1,17 @@
-package com.coherentsolutions.training.aqa.java.web.nikonova.pageObjects;
+package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
-import com.coherentsolutions.training.aqa.java.web.nikonova.browsersSettings.BrowsersSettings;
-import org.openqa.selenium.By;
+import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersSettings;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
-public class WishListPage {
+public class WishListPage extends BasePage{
 
     @FindBy(
             css = "#block-history tbody > tr"
@@ -38,11 +38,16 @@ public class WishListPage {
     )
     private WebElement wishlistButton;
 
-    private By wishlistForm = By.cssSelector("#form_wishlist");
+    @FindBy(
+            css = "#form_wishlist"
+    )
+    private WebElement wishlistForm;
 
-    public WishListPage() {
+  //  private By wishlistForm = By.cssSelector("#form_wishlist");
 
-        PageFactory.initElements(BrowsersSettings.getDriver(), this);
+    public WishListPage(WebDriver driver) {
+
+        super(driver);
 
     }
 
@@ -58,7 +63,7 @@ public class WishListPage {
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.visibilityOfElementLocated(wishlistForm)).isDisplayed();
+            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(wishlistForm)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }
@@ -70,12 +75,12 @@ public class WishListPage {
 
     public ProductsPage navigateWomenCategory() {
         categoryWomen.click();
-        return new ProductsPage();
+        return new ProductsPage(driver);
     }
 
     public boolean isCustomWishlistDisplayed() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), 10L).until(ExpectedConditions.textToBePresentInElement(customWishlist, "Custom Wishlist"));
+            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.textToBePresentInElement(customWishlist, "Custom Wishlist"));
         } catch (WebDriverException e) {
             return false;
         }
