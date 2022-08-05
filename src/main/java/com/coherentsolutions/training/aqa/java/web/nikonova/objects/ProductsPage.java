@@ -38,8 +38,6 @@ public class ProductsPage extends BasePage{
     )
     private WebElement productElements;
 
-  //  By productElements = By.cssSelector(".navigation_page");
-
 
     public ProductsPage(WebDriver driver) {
 

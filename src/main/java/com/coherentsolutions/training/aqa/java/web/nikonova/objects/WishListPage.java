@@ -43,7 +43,6 @@ public class WishListPage extends BasePage{
     )
     private WebElement wishlistForm;
 
-  //  private By wishlistForm = By.cssSelector("#form_wishlist");
 
     public WishListPage(WebDriver driver) {
 

@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class AccountPage extends BasePage{
+public class AccountPage extends BasePage {
 
     @FindBy(
             css = "tbody td:first-child a"
@@ -42,11 +42,9 @@ public class AccountPage extends BasePage{
     )
     private WebElement item;
 
-   // private By item = By.cssSelector(".page-heading");
 
     public AccountPage(WebDriver driver) {
         super(driver);
-
 
     }
 

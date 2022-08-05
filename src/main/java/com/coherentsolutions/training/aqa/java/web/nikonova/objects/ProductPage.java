@@ -48,7 +48,6 @@ public class ProductPage extends BasePage{
     )
     private WebElement itemsButton;
 
-   // By itemsButton = By.id("product_reference");
 
     public ProductPage(WebDriver driver) {
 
