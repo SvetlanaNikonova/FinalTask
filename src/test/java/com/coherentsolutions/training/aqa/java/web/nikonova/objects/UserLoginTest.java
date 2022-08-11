@@ -17,12 +17,16 @@ public class UserLoginTest extends BaseTest {
     @Feature("Login")
     @Description("Verify the ability to login")
     public void loginToAccount(String email, String password) {
+
+        // just trying to check
+        log.info("Entered a valid Email Address.");
+
         try {
             AuthenticationPage ap = new AuthenticationPage(driver);
             AccountPage accountPage = ap.loginAccount(email, password);
             Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
-        }catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            log.error("Page was not found");
         }
 
     }

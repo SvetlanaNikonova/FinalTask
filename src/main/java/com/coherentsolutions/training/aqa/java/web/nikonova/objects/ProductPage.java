@@ -13,39 +13,25 @@ import java.time.Duration;
 
 public class ProductPage extends BasePage{
 
-    @FindBy(
-            xpath = "//a[@id='wishlist_button']"
-    )
+    @FindBy(xpath = "//a[@id='wishlist_button']")
     private WebElement addToWishlistButton;
 
-    @FindBy(
-            css = ".account"
-    )
+    @FindBy(css = ".account")
     private WebElement accountButton;
 
-    @FindBy(
-            css = "a[title='Close']"
-    )
+    @FindBy(css = "a[title='Close']")
     private WebElement closeButton;
 
-    @FindBy(
-            id = "add_to_cart"
-    )
+    @FindBy(id = "add_to_cart")
     private WebElement addToCart;
 
-    @FindBy(
-            css = "div.button-container>span"
-    )
+    @FindBy(css = "div.button-container>span")
     private WebElement continueShopping;
 
-    @FindBy(
-            css = "div.button-container > a > span"
-    )
+    @FindBy(css = "div.button-container > a > span")
     private WebElement checkOut;
 
-    @FindBy(
-            id = "product_reference"
-    )
+    @FindBy(id = "product_reference")
     private WebElement itemsButton;
 
 

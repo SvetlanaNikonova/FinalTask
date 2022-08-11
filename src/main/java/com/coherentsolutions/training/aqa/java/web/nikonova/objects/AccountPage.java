@@ -12,34 +12,22 @@ import java.time.Duration;
 
 public class AccountPage extends BasePage {
 
-    @FindBy(
-            css = "tbody td:first-child a"
-    )
+    @FindBy(css = "tbody td:first-child a")
     private WebElement wishlistLink;
 
-    @FindBy(
-            css = ".lnk_wishlist"
-    )
+    @FindBy(css = ".lnk_wishlist")
     private WebElement wishlistButton;
 
-    @FindBy(
-            css = "a[title=Women]"
-    )
+    @FindBy(css = "a[title=Women]")
     private WebElement categoryWomen;
 
-    @FindBy(
-            css = "#name"
-    )
+    @FindBy(css = "#name")
     private WebElement wishlistNameInput;
 
-    @FindBy(
-            css = "#submitWishlist"
-    )
+    @FindBy(css = "#submitWishlist")
     private WebElement saveWishlistButton;
 
-    @FindBy(
-            css = ".page-heading"
-    )
+    @FindBy(css = ".page-heading")
     private WebElement item;
 
 

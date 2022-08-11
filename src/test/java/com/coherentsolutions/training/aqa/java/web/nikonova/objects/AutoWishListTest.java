@@ -30,7 +30,7 @@ public class AutoWishListTest extends BaseTest {
 
         AccountPage accountPage = new AccountPage(driver);
         WishListPage autoWishListPage = accountPage.navigateWishlist();
-        Assert.assertEquals(0, autoWishListPage.getWishlistItems().size());
+        Assert.assertEquals(0, autoWishListPage.getWishlistItems().size(), "Wishlist page was not empty");
     }
 
     @Test(priority = 3)

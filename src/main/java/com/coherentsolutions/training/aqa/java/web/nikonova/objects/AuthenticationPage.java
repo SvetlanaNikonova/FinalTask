@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -14,22 +14,22 @@ import java.time.Duration;
 
 public class AuthenticationPage extends BasePage{
 
-    @FindBy(how = How.CSS, using = "#create-account_form")
+    @FindBy(css =  "#create-account_form")
     private WebElement accountCreationForm;
 
-    @FindBy(how = How.CSS, using = "#email_create")
+    @FindBy(css = "#email_create")
     private WebElement registrationEmailInput;
 
-    @FindBy(how = How.CSS, using = "#SubmitCreate")
+    @FindBy(css = "#SubmitCreate")
     private WebElement registerButton;
 
-    @FindBy(how = How.CSS, using = "#passwd")
+    @FindBy(css = "#passwd")
     private WebElement passwordInput;
 
-    @FindBy(how = How.CSS, using = "#email")
+    @FindBy(css = "#email")
     private WebElement emailInput;
 
-    @FindBy(how = How.CSS, using = "#SubmitLogin")
+    @FindBy(css = "#SubmitLogin")
     private WebElement signinButton;
 
 

@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static com.coherentsolutions.training.aqa.java.web.nikonova.objects.BaseTest.log;
+
 public class FailedTestListener implements IInvokedMethodListener {
 
     public static String screenshotsFolderName;
@@ -26,13 +28,14 @@ public class FailedTestListener implements IInvokedMethodListener {
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
         if (testResult.getStatus() == ITestResult.FAILURE) {
-           WebDriver driver = BrowsersSettings.getDriver();
-           captureScreenshot(testResult.getTestContext().getSuite().getName() + "_" +
-                   testResult.getTestContext().getName() + "_" + testResult.getName() + ".png", driver);
-           Allure.addAttachment(testResult.getMethod().getMethodName(),
-                   new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
+            WebDriver driver = BrowsersSettings.getDriver();
+            captureScreenshot(testResult.getTestContext().getSuite().getName() + "_" +
+                    testResult.getTestContext().getName() + "_" + testResult.getName() + ".png", driver);
+            Allure.addAttachment(testResult.getMethod().getMethodName(),
+                    new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
     }
+
     public static void captureScreenshot(String fileName, WebDriver driver) {
         if (screenshotsFolderName == null) {
             LocalDateTime now = LocalDateTime.now();
@@ -41,11 +44,10 @@ public class FailedTestListener implements IInvokedMethodListener {
         }
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File destFile = new File("./Screenshots/" + screenshotsFolderName + "/" + fileName);
-
         try {
             FileUtils.copyFile(srcFile, destFile);
-        }catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            log.error("Error while capturing screenshots");
         }
     }
 }

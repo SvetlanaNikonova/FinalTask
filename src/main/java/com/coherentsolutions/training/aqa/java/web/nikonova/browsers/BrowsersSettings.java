@@ -49,12 +49,12 @@ public class BrowsersSettings {
                 chromeOptions = new ChromeOptions();
                 chromeOptions.setPlatformName(BrowsersProperties.getBrowserProperties(String.format("%s.chrome.browser.platform", environment)));
                 chromeOptions.setBrowserVersion(BrowsersProperties.getBrowserProperties(String.format("%s.chrome.browser.version", environment)));
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
+                driver = new RemoteWebDriver(new URL(BrowsersProperties.getBrowserProperties("Url.grid")), chromeOptions);
             } else if (browser.equals(BrowsersProperties.getBrowserProperties("browser.firefox"))) {
                 firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setPlatformName(BrowsersProperties.getBrowserProperties(String.format("%s.firefox.browser.platform", environment)));
                 firefoxOptions.setBrowserVersion(BrowsersProperties.getBrowserProperties(String.format("%s.firefox.browser.version", environment)));
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
+                driver = new RemoteWebDriver(new URL(BrowsersProperties.getBrowserProperties("Url.grid")), firefoxOptions);
             } else {
                 throw new Exception("Browser is unavailable");
             }
@@ -71,7 +71,7 @@ public class BrowsersSettings {
         }
     }
 
-    public RemoteWebDriver sauceLabsTestOnFirefox() throws IOException {
+    private RemoteWebDriver sauceLabsTestOnFirefox() throws IOException {
 
         String username = System.getenv("SAUCE_USERNAME");
         String accessKey = System.getenv("SAUCE_ACCESS_KEY");
@@ -84,11 +84,13 @@ public class BrowsersSettings {
         firefoxOptions.setPlatformName(BrowsersProperties.getBrowserProperties(String.format("%s.firefox.browser.platform", environment)));
         firefoxOptions.setBrowserVersion(BrowsersProperties.getBrowserProperties(String.format("%s.firefox.browser.version", environment)));
 
-        return new RemoteWebDriver(new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub"), firefoxOptions);
+        //   return new RemoteWebDriver(new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub"), firefoxOptions);
+
+        return new RemoteWebDriver(new URL(BrowsersProperties.getBrowserProperties("Url.sauceLabs")), firefoxOptions);
 
     }
 
-    public RemoteWebDriver sauceLabsTestOnChrome() throws IOException {
+    private RemoteWebDriver sauceLabsTestOnChrome() throws IOException {
 
         String username = System.getenv("SAUCE_USERNAME");
         String accessKey = System.getenv("SAUCE_ACCESS_KEY");
@@ -100,7 +102,9 @@ public class BrowsersSettings {
         chromeOptions = new ChromeOptions();
         chromeOptions.setPlatformName(BrowsersProperties.getBrowserProperties(String.format("%s.chrome.browser.platform", environment)));
         chromeOptions.setBrowserVersion(BrowsersProperties.getBrowserProperties(String.format("%s.chrome.browser.version", environment)));
-        return new RemoteWebDriver(new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub"), chromeOptions);
+        //  return new RemoteWebDriver(new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub"), chromeOptions);
+
+        return new RemoteWebDriver(new URL(BrowsersProperties.getBrowserProperties("Url.sauceLabs")), chromeOptions);
 
     }
 }

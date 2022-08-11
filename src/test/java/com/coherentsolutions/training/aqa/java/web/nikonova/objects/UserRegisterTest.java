@@ -21,9 +21,9 @@ public class UserRegisterTest extends BaseTest {
 
         AuthenticationPage ap = new AuthenticationPage(driver);
         UserRegistrationFormPage userPage = ap.registerAccount(email);
-        Assert.assertTrue(userPage.isLoaded());
+        Assert.assertTrue(userPage.isLoaded(), "Page is not loaded");
         AccountPage accountPage = userPage.fillRegistrationForm(name, lastName, password, address, city, postalCode, phoneNumber, state, alias);
-        Assert.assertTrue(accountPage.isLoaded());
+        Assert.assertTrue(accountPage.isLoaded(), "Page is not loaded");
     }
 }
 

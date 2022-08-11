@@ -14,31 +14,31 @@ import java.time.Duration;
 
 public class UserRegistrationFormPage extends BasePage{
 
-    @FindBy(how = How.CSS, using = "#email_create")
+    @FindBy(css = "#email_create")
     private WebElement registrationEmailInput;
 
-    @FindBy(how = How.CSS, using = "#SubmitCreate")
+    @FindBy(css = "#SubmitCreate")
     private WebElement createAccountButton;
 
-    @FindBy(how = How.CSS, using = "#customer_firstname")
+    @FindBy(css = "#customer_firstname")
     private WebElement nameInput;
 
-    @FindBy(how = How.CSS, using = "#customer_lastname")
+    @FindBy(css = "#customer_lastname")
     private WebElement lastnameInput;
 
-    @FindBy(how = How.CSS, using = "#passwd")
+    @FindBy(css = "#passwd")
     private WebElement passwordInput;
 
-    @FindBy(how = How.CSS, using = "input[id=firstname]")
+    @FindBy(css = "input[id=firstname]")
     private WebElement nameInputAddress;
 
-    @FindBy(how = How.CSS, using = "input[id='lastname']")
+    @FindBy(css = "input[id='lastname']")
     private WebElement lastnameInputAddress;
 
-    @FindBy(how = How.CSS, using = "input[id='address1']")
+    @FindBy(css = "input[id='address1']")
     private WebElement addressInput;
 
-    @FindBy(how = How.CSS, using = "#city")
+    @FindBy(css = "#city")
     private WebElement cityInput;
 
     @FindBy(css = "select[id='id_state']")

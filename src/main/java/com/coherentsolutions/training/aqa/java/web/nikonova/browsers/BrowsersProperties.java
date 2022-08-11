@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class BrowsersProperties {
 
-    public static String getBrowserProperties(String property) throws IOException {
+    private static final String PATH_BROWSER_PROPERTIES = "./src/main/resources/config/browser.properties";
 
-        final String PATH_BROWSER_PROPERTIES = "./src/main/resources/config/browser.properties";
+    public static String getBrowserProperties(String property) throws IOException {
 
         Properties prop = new Properties();
 

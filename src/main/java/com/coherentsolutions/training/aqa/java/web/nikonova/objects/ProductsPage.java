@@ -13,29 +13,19 @@ import java.time.Duration;
 
 public class ProductsPage extends BasePage{
 
-    @FindBy(
-            xpath = "//*[@class='product-name'][@title='Blouse']"
-    )
+    @FindBy(xpath = "//*[@class='product-name'][@title='Blouse']")
     private WebElement productFirst;
 
-    @FindBy(
-            css = ".product-name[title='Faded Short Sleeve T-shirts']"
-    )
+    @FindBy(css = ".product-name[title='Faded Short Sleeve T-shirts']")
     private WebElement secondProduct;
 
-    @FindBy(
-            css = ".product-name[title='Printed Chiffon Dress']"
-    )
+    @FindBy(css = ".product-name[title='Printed Chiffon Dress']")
     private WebElement thirdProduct;
 
-    @FindBy(
-            id = "cart_title"
-    )
+    @FindBy(id = "cart_title")
     private WebElement cartSummary;
 
-    @FindBy(
-            css = ".navigation_page"
-    )
+    @FindBy(css = ".navigation_page")
     private WebElement productElements;
 
 

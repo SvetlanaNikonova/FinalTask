@@ -13,34 +13,22 @@ import java.util.List;
 
 public class WishListPage extends BasePage{
 
-    @FindBy(
-            css = "#block-history tbody > tr"
-    )
+    @FindBy(css = "#block-history tbody > tr")
     private List<WebElement> wishlistItems;
 
-    @FindBy(
-            css = "a[title=Women]"
-    )
+    @FindBy(css = "a[title=Women]")
     private WebElement categoryWomen;
 
-    @FindBy(
-            css = ".page-heading"
-    )
+    @FindBy(css = ".page-heading")
     private WebElement wishlistLink;
 
-    @FindBy(
-            id = "block-history"
-    )
+    @FindBy(id = "block-history")
     private WebElement customWishlist;
 
-    @FindBy(
-            css = ".lnk_wishlist"
-    )
+    @FindBy(css = ".lnk_wishlist")
     private WebElement wishlistButton;
 
-    @FindBy(
-            css = "#form_wishlist"
-    )
+    @FindBy(css = "#form_wishlist")
     private WebElement wishlistForm;
 
 
