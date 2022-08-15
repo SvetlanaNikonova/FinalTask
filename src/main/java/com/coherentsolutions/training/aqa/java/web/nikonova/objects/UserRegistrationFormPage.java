@@ -5,14 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class UserRegistrationFormPage extends BasePage{
+public class UserRegistrationFormPage extends BasePage {
 
     @FindBy(css = "#email_create")
     private WebElement registrationEmailInput;
@@ -61,21 +60,21 @@ public class UserRegistrationFormPage extends BasePage{
 
     public UserRegistrationFormPage(WebDriver driver) {
         super(driver);
-
     }
 
     public AccountPage fillRegistrationForm(String name, String lastName, String password, String address, String city, String postalCode, String phoneNumber, String state, String alias) {
-
         nameInput.sendKeys(name);
         lastnameInput.sendKeys(lastName);
         passwordInput.sendKeys(password);
         addressInput.sendKeys(address);
         cityInput.sendKeys(city);
+
         Select select = new Select(stateSelect);
         select.selectByVisibleText(state);
         postalCodeInput.sendKeys(postalCode);
         phoneNumberInput.sendKeys(phoneNumber);
         this.alias.sendKeys(alias);
+
         registerButton.click();
         return new AccountPage(driver);
     }

@@ -30,10 +30,8 @@ public class AccountPage extends BasePage {
     @FindBy(css = ".page-heading")
     private WebElement item;
 
-
     public AccountPage(WebDriver driver) {
         super(driver);
-
     }
 
     public WishListPage navigateWishlist() {
@@ -47,8 +45,8 @@ public class AccountPage extends BasePage {
     }
 
     public AccountPage createCustomWishlist(String name) {
-        this.wishlistNameInput.sendKeys(name);
-        this.saveWishlistButton.click();
+        wishlistNameInput.sendKeys(name);
+        saveWishlistButton.click();
         return this;
     }
 

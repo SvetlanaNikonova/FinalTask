@@ -17,8 +17,8 @@ public class UserRegisterTest extends BaseTest {
     @Test(dataProvider = "setUser")
     @Feature("Create account")
     @Description("Verify the ability to create an account")
-    public void registerAccount(String name, String lastName, String email, String password, String address, String city, String postalCode, String phoneNumber, String state, String alias) throws IOException {
-
+    public void registerAccountTest(String name, String lastName, String email, String password, String address, String city, String postalCode, String phoneNumber, String state, String alias) throws IOException {
+        log.info("Verifying to create an account");
         AuthenticationPage ap = new AuthenticationPage(driver);
         UserRegistrationFormPage userPage = ap.registerAccount(email);
         Assert.assertTrue(userPage.isLoaded(), "Page is not loaded");

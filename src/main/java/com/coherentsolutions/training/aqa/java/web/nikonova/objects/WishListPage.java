@@ -31,11 +31,8 @@ public class WishListPage extends BasePage{
     @FindBy(css = "#form_wishlist")
     private WebElement wishlistForm;
 
-
     public WishListPage(WebDriver driver) {
-
         super(driver);
-
     }
 
     public WishListPage expandWishlist() {

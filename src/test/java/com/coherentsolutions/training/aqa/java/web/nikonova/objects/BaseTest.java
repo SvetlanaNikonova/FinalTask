@@ -10,10 +10,9 @@ import org.testng.annotations.*;
 
 import java.time.Duration;
 
-
 public class BaseTest {
 
-    private static final String PATH_BROWSER = "C:\\Users\\SvetlanaNikonova\\chromedriver.exe";
+    private static final String PATH_BROWSER = "./src/main/resources/drivers/chromedriver.exe";
 
     protected static final String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
     protected WebDriver driver = BrowsersSettings.getDriver();
@@ -23,13 +22,13 @@ public class BaseTest {
     @BeforeSuite
     public void setUp() {
         if (driver == null) {
-            log.info("Hello!");
+            log.info("Tests are starting!");
         }
     }
 
     @AfterSuite
     public void tearDown() {
-        log.info("Goodbye!");
+        log.info("Tests are ending!");
         if (driver != null) {
             driver.quit();
         }
@@ -48,7 +47,6 @@ public class BaseTest {
 
     @AfterClass
     public void cleanup() {
-
         BrowsersSettings.driverTeardown();
     }
 }

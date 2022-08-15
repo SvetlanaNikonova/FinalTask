@@ -5,16 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+public class AuthenticationPage extends BasePage {
 
-public class AuthenticationPage extends BasePage{
-
-    @FindBy(css =  "#create-account_form")
+    @FindBy(css = "#create-account_form")
     private WebElement accountCreationForm;
 
     @FindBy(css = "#email_create")
@@ -32,16 +30,13 @@ public class AuthenticationPage extends BasePage{
     @FindBy(css = "#SubmitLogin")
     private WebElement signinButton;
 
-
     public AuthenticationPage(WebDriver driver) {
-
         super(driver);
     }
 
     public UserRegistrationFormPage registerAccount(String email) {
-
-        this.registrationEmailInput.sendKeys(email);
-        this.registerButton.click();
+        registrationEmailInput.sendKeys(email);
+        registerButton.click();
         return new UserRegistrationFormPage(driver);
     }
 
@@ -54,9 +49,9 @@ public class AuthenticationPage extends BasePage{
     }
 
     public AccountPage loginAccount(String username, String password) {
-        this.emailInput.sendKeys(username);
-        this.passwordInput.sendKeys(password);
-        this.signinButton.click();
+        emailInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        signinButton.click();
         return new AccountPage(driver);
     }
 }

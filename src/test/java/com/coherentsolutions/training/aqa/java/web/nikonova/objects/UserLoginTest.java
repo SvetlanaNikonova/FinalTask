@@ -10,24 +10,24 @@ public class UserLoginTest extends BaseTest {
 
     @DataProvider
     public Object[][] userLoginDetails() {
-        return new Object[][]{{"SeleniumTest789@yandex.com", "password123"}};
+        Object[][] data = new Object[2][2];
+        data[0][0] = "SeleniumTest789@yandex.com";
+        data[0][1] = "password123";
+
+        data[1][0] = "SeleniumTest789@yandex.com";
+        data[1][1] = "belekoks_789!";
+
+        return data;
     }
 
     @Test(dataProvider = "userLoginDetails")
     @Feature("Login")
     @Description("Verify the ability to login")
-    public void loginToAccount(String email, String password) {
-
-        // just trying to check
-        log.info("Entered a valid Email Address.");
-
-        try {
-            AuthenticationPage ap = new AuthenticationPage(driver);
-            AccountPage accountPage = ap.loginAccount(email, password);
-            Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
-        } catch (Exception e) {
-            log.error("Page was not found");
-        }
-
+    public void loginToAccountTest(String email, String password) throws Exception {
+        log.info("Verifying login to account");
+        AuthenticationPage ap = new AuthenticationPage(driver);
+        AccountPage accountPage = ap.loginAccount(email, password);
+        Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
     }
 }
+

@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-
-public class ProductsPage extends BasePage{
+public class ProductsPage extends BasePage {
 
     @FindBy(xpath = "//*[@class='product-name'][@title='Blouse']")
     private WebElement productFirst;
@@ -28,14 +27,12 @@ public class ProductsPage extends BasePage{
     @FindBy(css = ".navigation_page")
     private WebElement productElements;
 
-
     public ProductsPage(WebDriver driver) {
-
-       super(driver);
+        super(driver);
     }
 
     public ProductPage clickFirstProduct() {
-        this.productFirst.click();
+        productFirst.click();
         return new ProductPage(driver);
     }
 
@@ -48,12 +45,12 @@ public class ProductsPage extends BasePage{
     }
 
     public ProductPage clickSecondProduct() {
-        this.secondProduct.click();
+        secondProduct.click();
         return new ProductPage(driver);
     }
 
     public ProductPage clickThirdProduct() {
-        this.thirdProduct.click();
+        thirdProduct.click();
         return new ProductPage(driver);
     }
 

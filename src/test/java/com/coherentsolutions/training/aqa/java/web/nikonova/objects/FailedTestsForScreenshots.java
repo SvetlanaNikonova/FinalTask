@@ -18,8 +18,8 @@ public class FailedTestsForScreenshots extends BaseTest {
     @Test(dataProvider = "userLoginDetails", priority = 1)
     @Feature("Login")
     @Description("Verify the ability to login")
-    public void loginToAccount(String email, String password) {
-
+    public void loginToAccountTest(String email, String password) {
+        log.info("Verifying login to account");
         AuthenticationPage ap = new AuthenticationPage(driver);
         AccountPage accountPage = ap.loginAccount(email, password);
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
@@ -28,19 +28,26 @@ public class FailedTestsForScreenshots extends BaseTest {
     @Test(priority = 2)
     @Feature("Create wishlist")
     @Description("Verify the ability to create wishlist")
-    public void checkCustomWishList() {
-
+    public void checkCustomWishListTest() {
+        log.info("Verifying creating custom wishlist");
         AccountPage accountPage = new AccountPage(driver);
         WishListPage autoWishListPage = accountPage.navigateWishlist();
         String customWishlistName = "Custom Wishlist";
         accountPage.createCustomWishlist(customWishlistName);
+
         WishListPage wishListPage = new WishListPage(driver);
+        Assert.assertTrue(wishListPage.isLoaded(), "Wishlist page was not loaded");
         ProductsPage productsPage = wishListPage.navigateWomenCategory();
+
         ProductsPage customProductsPage = new ProductsPage(driver);
+        Assert.assertTrue(productsPage.isLoaded(), "Products page was not loaded");
         ProductPage productPage = productsPage.clickFirstProduct();
+
         ProductPage customProductPage = new ProductPage(driver);
         productPage = productPage.addToWishlist();
         AccountPage customAccountPage = productPage.navigateToAccount();
+        Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
+
         WishListPage customWishListPage = new WishListPage(driver);
         wishListPage = wishListPage.expandWishlist().checkWishlist();
         Assert.assertFalse(wishListPage.isCustomWishlistDisplayed(), "Custom Wishlist is not displayed");

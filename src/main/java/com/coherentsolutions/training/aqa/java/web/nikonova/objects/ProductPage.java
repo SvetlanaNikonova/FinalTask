@@ -10,8 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-
-public class ProductPage extends BasePage{
+public class ProductPage extends BasePage {
 
     @FindBy(xpath = "//a[@id='wishlist_button']")
     private WebElement addToWishlistButton;
@@ -34,37 +33,33 @@ public class ProductPage extends BasePage{
     @FindBy(id = "product_reference")
     private WebElement itemsButton;
 
-
     public ProductPage(WebDriver driver) {
-
-       super(driver);
-
+        super(driver);
     }
 
     public ProductPage addToWishlist() {
-
-        this.addToWishlistButton.click();
+        addToWishlistButton.click();
         closeButton.click();
         return this;
     }
 
     public ProductPage addToCart() {
-        this.addToCart.click();
+        addToCart.click();
         return new ProductPage(driver);
     }
 
     public ProductPage continueShopping() {
-        this.continueShopping.click();
+        continueShopping.click();
         return new ProductPage(driver);
     }
 
     public ProductPage goToCheckOut() {
-        this.checkOut.click();
+        checkOut.click();
         return new ProductPage(driver);
     }
 
     public AccountPage navigateToAccount() {
-        this.accountButton.click();
+        accountButton.click();
         return new AccountPage(driver);
     }
 
