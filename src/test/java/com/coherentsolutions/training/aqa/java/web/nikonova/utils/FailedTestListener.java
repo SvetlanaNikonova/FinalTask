@@ -23,27 +23,33 @@ import static com.coherentsolutions.training.aqa.java.web.nikonova.objects.BaseT
 
 public class FailedTestListener implements IInvokedMethodListener {
 
-    public static String screenshotsFolderName;
-
     @Override
     public void afterInvocation(IInvokedMethod method, ITestResult testResult, ITestContext context) {
+
+        String str1 = testResult.getTestContext().getSuite().getName();
+        String str2 = testResult.getTestContext().getName();
+        String str3 = testResult.getName();
+
         if (testResult.getStatus() == ITestResult.FAILURE) {
             WebDriver driver = BrowsersSettings.getDriver();
-            captureScreenshot(testResult.getTestContext().getSuite().getName() + "_" +
-                    testResult.getTestContext().getName() + "_" + testResult.getName() + ".png", driver);
+            captureScreenshot(String.format("Screenshot" + "%1$s, %2$s, %3$s", str1, str2, str3) + ".png", driver);
             Allure.addAttachment(testResult.getMethod().getMethodName(),
                     new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         }
     }
 
     public static void captureScreenshot(String fileName, WebDriver driver) {
-        if (screenshotsFolderName == null) {
-            LocalDateTime now = LocalDateTime.now();
-            DateTimeFormatter dt = DateTimeFormatter.ofPattern("ddMMyyyy");
-            screenshotsFolderName = now.format(dt);
-        }
+
+        String st1 = "./Screenshots/";
+        String st2 = "screenshotsFolderName";
+        String st3 = fileName;
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter dt = DateTimeFormatter.ofPattern("ddMMyyyy");
+        st2 = now.format(dt);
+
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File destFile = new File("./Screenshots/" + screenshotsFolderName + "/" + fileName);
+        File destFile = new File(String.format("%1$s, %2$s, %3$s", st1, st2, st3));
         try {
             FileUtils.copyFile(srcFile, destFile);
         } catch (IOException e) {

@@ -1,6 +1,5 @@
 package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
-import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -11,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class WishListPage extends BasePage{
+public class WishListPage extends BasePage {
 
     @FindBy(css = "#block-history tbody > tr")
     private List<WebElement> wishlistItems;
@@ -47,7 +46,8 @@ public class WishListPage extends BasePage{
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(wishlistForm)).isDisplayed();
+            return new WebDriverWait(driver,
+                    Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(wishlistForm)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }
@@ -64,7 +64,8 @@ public class WishListPage extends BasePage{
 
     public boolean isCustomWishlistDisplayed() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(10)).until(ExpectedConditions.textToBePresentInElement(customWishlist, "Custom Wishlist"));
+            return new WebDriverWait(driver,
+                    Duration.ofSeconds(10)).until(ExpectedConditions.textToBePresentInElement(customWishlist, "Custom Wishlist"));
         } catch (WebDriverException e) {
             return false;
         }

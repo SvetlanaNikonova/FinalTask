@@ -38,7 +38,8 @@ public class ProductsPage extends BasePage {
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(productElements)).isDisplayed();
+            return new WebDriverWait(driver,
+                    Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOf(productElements)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }
@@ -56,7 +57,8 @@ public class ProductsPage extends BasePage {
 
     public boolean isCartDisplayed() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(5)).until(ExpectedConditions.textToBePresentInElement(cartSummary, "Your shopping cart contains: "));
+            return new WebDriverWait(driver,
+                    Duration.ofSeconds(5)).until(ExpectedConditions.textToBePresentInElement(cartSummary, "Your shopping cart contains: "));
         } catch (WebDriverException e) {
             return false;
         }

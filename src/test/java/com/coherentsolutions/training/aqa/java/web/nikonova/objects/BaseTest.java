@@ -15,7 +15,8 @@ public class BaseTest {
     private static final String PATH_BROWSER = "./src/main/resources/drivers/chromedriver.exe";
 
     protected static final String URL = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-    protected WebDriver driver = BrowsersSettings.getDriver();
+
+    protected WebDriver driver;
 
     public static Logger log = LogManager.getLogger();
 
@@ -39,10 +40,10 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", PATH_BROWSER);
 
         new BrowsersSettings(BrowsersProperties.getBrowserProperties("env.local"), (BrowsersProperties.getBrowserProperties("browser.chrome"))).setBrowserParameters();
-
-        BrowsersSettings.getDriver().manage().window().maximize();
-        BrowsersSettings.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        BrowsersSettings.getDriver().get(URL);
+        driver = BrowsersSettings.getDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get(URL);
     }
 
     @AfterClass

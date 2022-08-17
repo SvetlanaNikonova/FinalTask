@@ -10,14 +10,10 @@ public class UserLoginTest extends BaseTest {
 
     @DataProvider
     public Object[][] userLoginDetails() {
-        Object[][] data = new Object[2][2];
-        data[0][0] = "SeleniumTest789@yandex.com";
-        data[0][1] = "password123";
-
-        data[1][0] = "SeleniumTest789@yandex.com";
-        data[1][1] = "belekoks_789!";
-
-        return data;
+       return new Object[][]{
+               { "SeleniumTest789@yandex.com", "password123"},
+               {"SeleniumTest789@yandex.com", "belekoks_789!"}
+       } ;
     }
 
     @Test(dataProvider = "userLoginDetails")

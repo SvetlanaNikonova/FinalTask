@@ -36,6 +36,7 @@ public class BrowsersSettings {
     }
 
     public void setBrowserParameters() throws Exception {
+
         if (environment.equals(BrowsersProperties.getBrowserProperties("env.local"))) {
             if (browser.equals(BrowsersProperties.getBrowserProperties("browser.chrome"))) {
                 driver.set(ThreadGuard.protect(new ChromeDriver()));

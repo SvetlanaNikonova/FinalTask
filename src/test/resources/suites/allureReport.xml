@@ -6,6 +6,7 @@
     </listeners>
     <test name="Allure Report">
         <classes>
+
             <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.AutoWishListTest"/>
             <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.CartTest"/>
             <class name="com.coherentsolutions.training.aqa.java.web.nikonova.objects.CustomWishlistTest"/>

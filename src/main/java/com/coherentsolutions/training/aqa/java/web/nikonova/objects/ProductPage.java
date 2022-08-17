@@ -1,6 +1,5 @@
 package com.coherentsolutions.training.aqa.java.web.nikonova.objects;
 
-import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersSettings;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -65,7 +64,8 @@ public class ProductPage extends BasePage {
 
     public boolean isLoaded() {
         try {
-            return new WebDriverWait(BrowsersSettings.getDriver(), Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(itemsButton)).isDisplayed();
+            return new WebDriverWait(driver,
+                    Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(itemsButton)).isDisplayed();
         } catch (WebDriverException e) {
             return false;
         }
