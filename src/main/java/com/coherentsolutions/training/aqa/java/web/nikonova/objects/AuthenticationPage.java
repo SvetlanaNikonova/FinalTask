@@ -39,6 +39,15 @@ public class AuthenticationPage extends BasePage {
         return new UserRegistrationFormPage(driver);
     }
 
+    public boolean isOpened() {
+        try {
+            return new WebDriverWait(driver,
+                    Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(signinButton)).isDisplayed();
+        } catch (WebDriverException e) {
+            return false;
+        }
+    }
+
     public boolean isLoaded() {
         try {
             return new WebDriverWait(driver,

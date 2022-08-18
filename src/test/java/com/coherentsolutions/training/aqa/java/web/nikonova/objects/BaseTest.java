@@ -4,6 +4,7 @@ import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersPro
 import com.coherentsolutions.training.aqa.java.web.nikonova.browsers.BrowsersSettings;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.WebDriver;
 
 import org.testng.annotations.*;
@@ -26,10 +27,6 @@ public class BaseTest {
         System.setProperty("webdriver.chrome.driver", PATH_BROWSER);
 
         new BrowsersSettings(BrowsersProperties.getBrowserProperties("env.local"), (BrowsersProperties.getBrowserProperties("browser.chrome"))).setBrowserParameters();
-        driver = BrowsersSettings.getDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(URL);
     }
 
     @AfterClass
@@ -37,5 +34,16 @@ public class BaseTest {
         log.info("Tests are ending!");
         BrowsersSettings.driverTeardown();
     }
+
+    public AuthenticationPage isAuthenticationPageOpened() {
+        driver = BrowsersSettings.getDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.get(URL);
+        AuthenticationPage authenticationPage = new AuthenticationPage(driver);
+        authenticationPage.isOpened();
+        return new AuthenticationPage(driver);
+    }
 }
+
 

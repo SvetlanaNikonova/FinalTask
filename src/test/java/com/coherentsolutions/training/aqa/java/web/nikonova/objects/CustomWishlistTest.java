@@ -13,7 +13,7 @@ public class CustomWishlistTest extends BaseTest {
         return new Object[][]{{"SeleniumTest789@yandex.com", "password123"}};
     }
 
-    @Test(dataProvider = "userLoginDetails", priority = 1)
+    @Test(dataProvider = "userLoginDetails")
     @Feature("Login")
     @Description("Verify the ability to login")
     public void loginToAccountTest(String email, String password) {
@@ -23,7 +23,7 @@ public class CustomWishlistTest extends BaseTest {
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
     }
 
-    @Test(priority = 2)
+    @Test(dependsOnMethods = "loginToAccountTest")
     @Feature("Create custom wishlist")
     @Description("Verify the ability to create custom wishlist")
     public void checkCustomWishListTest() {

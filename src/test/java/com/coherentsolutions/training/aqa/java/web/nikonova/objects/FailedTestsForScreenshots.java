@@ -15,7 +15,7 @@ public class FailedTestsForScreenshots extends BaseTest {
         return new Object[][]{{"SeleniumTest789@yandex.com", "password123"}};
     }
 
-    @Test(dataProvider = "userLoginDetails", priority = 1)
+    @Test(dataProvider = "userLoginDetails")
     @Feature("Login")
     @Description("Verify the ability to login")
     public void loginToAccountTest(String email, String password) {
@@ -25,7 +25,7 @@ public class FailedTestsForScreenshots extends BaseTest {
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
     }
 
-    @Test(priority = 2)
+    @Test(dependsOnMethods = "loginToAccountTest")
     @Feature("Create wishlist")
     @Description("Verify the ability to create wishlist")
     public void checkCustomWishListTest() {

@@ -13,7 +13,7 @@ public class CartTest extends BaseTest {
         return new Object[][]{{"SeleniumTest789@yandex.com", "password123"}};
     }
 
-    @Test(dataProvider = "userLoginDetails", priority = 1)
+    @Test(dataProvider = "userLoginDetails")
     @Feature("Login")
     @Description("Verify the ability to login")
     public void loginToAccountTest(String email, String password) {
@@ -23,7 +23,7 @@ public class CartTest extends BaseTest {
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
     }
 
-    @Test(priority = 2)
+    @Test(dependsOnMethods = "loginToAccountTest")
     @Feature("Create cart with products")
     @Description("Verify the ability to create cart and add products")
     public void checkCartTest() {
