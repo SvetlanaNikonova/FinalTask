@@ -18,6 +18,7 @@ public class CustomWishlistTest extends BaseTest {
     @Description("Verify the ability to login")
     public void loginToAccountTest(String email, String password) {
         log.info("Verifying login to account");
+        isAuthenticationPageOpened();
         AuthenticationPage ap = new AuthenticationPage(driver);
         AccountPage accountPage = ap.loginAccount(email, password);
         Assert.assertTrue(accountPage.isLoaded(), "Account page was not loaded");
