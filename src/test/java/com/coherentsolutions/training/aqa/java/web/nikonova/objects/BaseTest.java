@@ -20,23 +20,9 @@ public class BaseTest {
 
     public static Logger log = LogManager.getLogger();
 
-    @BeforeSuite
-    public void setUp() {
-        if (driver == null) {
-            log.info("Tests are starting!");
-        }
-    }
-
-    @AfterSuite
-    public void tearDown() {
-        log.info("Tests are ending!");
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
     @BeforeClass
     public void setupWebDriver() throws Exception {
+        log.info("Tests are starting!");
         System.setProperty("webdriver.chrome.driver", PATH_BROWSER);
 
         new BrowsersSettings(BrowsersProperties.getBrowserProperties("env.local"), (BrowsersProperties.getBrowserProperties("browser.chrome"))).setBrowserParameters();
@@ -48,8 +34,8 @@ public class BaseTest {
 
     @AfterClass
     public void cleanup() {
+        log.info("Tests are ending!");
         BrowsersSettings.driverTeardown();
     }
 }
-
 

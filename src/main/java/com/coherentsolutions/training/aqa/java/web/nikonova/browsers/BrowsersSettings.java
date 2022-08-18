@@ -61,9 +61,9 @@ public class BrowsersSettings {
             }
         } else if (environment.equals(BrowsersProperties.getBrowserProperties("env.sauceLabs"))) {
             if (browser.equals(BrowsersProperties.getBrowserProperties("browser.chrome"))) {
-                driver.set(ThreadGuard.protect(sauceLabsTestOnChrome()));
+                driver.set(ThreadGuard.protect(sauceLabsTest("chrome")));
             } else if (browser.equals(BrowsersProperties.getBrowserProperties("browser.firefox"))) {
-                driver.set(ThreadGuard.protect(sauceLabsTestOnFirefox()));
+                driver.set(ThreadGuard.protect(sauceLabsTest("firefox")));
             } else {
                 throw new Exception("Browser is unavailable");
             }
@@ -72,7 +72,8 @@ public class BrowsersSettings {
         }
     }
 
-    private RemoteWebDriver sauceLabsTestOnFirefox() throws IOException {
+    private RemoteWebDriver sauceLabsTest(String browserName) throws IOException {
+
         String username = System.getenv("SAUCE_USERNAME");
         String accessKey = System.getenv("SAUCE_ACCESS_KEY");
         MutableCapabilities sauceOptions = new MutableCapabilities();
@@ -80,24 +81,22 @@ public class BrowsersSettings {
         sauceOptions.setCapability("username", username);
         sauceOptions.setCapability("accessKey", accessKey);
 
-        firefoxOptions = new FirefoxOptions();
-        firefoxOptions.setPlatformName(BrowsersProperties.getBrowserProperties(String.format("%s.firefox.browser.platform", environment)));
-        firefoxOptions.setBrowserVersion(BrowsersProperties.getBrowserProperties(String.format("%s.firefox.browser.version", environment)));
-        return new RemoteWebDriver(new URL(BrowsersProperties.getBrowserProperties("url.sauceLabs")), firefoxOptions);
-    }
-
-    private RemoteWebDriver sauceLabsTestOnChrome() throws IOException {
-        String username = System.getenv("SAUCE_USERNAME");
-        String accessKey = System.getenv("SAUCE_ACCESS_KEY");
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-
-        sauceOptions.setCapability("username", username);
-        sauceOptions.setCapability("accessKey", accessKey);
-
-        chromeOptions = new ChromeOptions();
-        chromeOptions.setPlatformName(BrowsersProperties.getBrowserProperties(String.format("%s.chrome.browser.platform", environment)));
-        chromeOptions.setBrowserVersion(BrowsersProperties.getBrowserProperties(String.format("%s.chrome.browser.version", environment)));
+        if (browserName.equals("firefox")) {
+            firefoxOptions = new FirefoxOptions();
+            firefoxOptions.getBrowserName();
+            firefoxOptions.setPlatformName(BrowsersProperties.getBrowserProperties(String.format("%s.firefox.browser.platform", environment)));
+            firefoxOptions.setBrowserVersion(BrowsersProperties.getBrowserProperties(String.format("%s.firefox.browser.version", environment)));
+            return new RemoteWebDriver(new URL(BrowsersProperties.getBrowserProperties("url.sauceLabs")), firefoxOptions);
+        } else if (browserName.equals("chrome")) {
+            chromeOptions = new ChromeOptions();
+            chromeOptions.getBrowserName();
+            chromeOptions.setPlatformName(BrowsersProperties.getBrowserProperties(String.format("%s.chrome.browser.platform", environment)));
+            chromeOptions.setBrowserVersion(BrowsersProperties.getBrowserProperties(String.format("%s.chrome.browser.version", environment)));
+        }
         return new RemoteWebDriver(new URL(BrowsersProperties.getBrowserProperties("url.sauceLabs")), chromeOptions);
     }
 }
+
+
+
 

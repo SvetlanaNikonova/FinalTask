@@ -42,14 +42,13 @@ public class FailedTestListener implements IInvokedMethodListener {
 
         String st1 = "./Screenshots/";
         String st2 = "screenshotsFolderName";
-        String st3 = fileName;
 
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter dt = DateTimeFormatter.ofPattern("ddMMyyyy");
         st2 = now.format(dt);
 
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        File destFile = new File(String.format("%1$s, %2$s, %3$s", st1, st2, st3));
+        File destFile = new File(String.format("%1$s, %2$s", st1, st2) + fileName);
         try {
             FileUtils.copyFile(srcFile, destFile);
         } catch (IOException e) {
